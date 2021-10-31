@@ -5,7 +5,6 @@ public class AVL {
     private NoAVL raiz;
 
     public AVL() {
-
     }
 
     public NoAVL getRaiz() {
@@ -20,11 +19,24 @@ public class AVL {
         return raiz == null;
     }
 
+    public NoAVL procurar (int info, NoAVL noAtual) {
+        while (noAtual != null) {
+            if (noAtual.getInfo() == info) {
+                return noAtual;
+            } else if (info > noAtual.getInfo()) {
+                noAtual = noAtual.getDir();
+            } else {
+                noAtual = noAtual.getEsq();
+            }
+        }
+        return null;
+    }
+
     public void inserir(int info, NoAVL noAtual) {
         if (isEmpty()) {
             NoAVL novoNo = new NoAVL(info);
             raiz = novoNo;
-             ajustarBalanceamento(noAtual);
+             ajustarBalanceamento(raiz);
         } else {
             if (info < noAtual.getInfo()) {
                 if (noAtual.getEsq() != null) {
@@ -56,7 +68,7 @@ public class AVL {
         }
     }
 
-    private void percorrerEmOrdem(NoAVL no) {
+    public void percorrerEmOrdem(NoAVL no) {
         if (no != null) {
             percorrerEmOrdem(no.getEsq());
             System.out.println(no.getInfo());
@@ -103,12 +115,12 @@ public class AVL {
     }
 
     public void ajustarBalanceamento(NoAVL noAtual) {
-        noAtual.setBalanceamento(verificaAltura(noAtual.getEsq()) - verificaAltura(noAtual.getDir()))
+        noAtual.setBalanceamento(verificaAltura(noAtual.getEsq()) - verificaAltura(noAtual.getDir()));
         if (noAtual.getDir() != null) {
-            ajustarBalanceamento(noAtual);
+            ajustarBalanceamento(noAtual.getDir());
         }
         if (noAtual.getEsq() != null) {
-            ajustarBalanceamento(noAtual);
+            ajustarBalanceamento(noAtual.getEsq());
         }
     }
 
