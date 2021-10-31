@@ -14,5 +14,9 @@ public class NoAVL extends No {
     public int getFB() {
         return fatorBalanceamento;
     }
+
+    public void setFB(int fb) {
+        this.fatorBalanceamento = fb;
+    }
     
 }
