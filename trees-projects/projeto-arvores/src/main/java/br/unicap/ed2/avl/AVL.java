@@ -18,6 +18,13 @@ public class AVL {
         return raiz == null;
     }
 
+    public boolean ehRaiz(int info) {
+        if (raiz == null){
+            return false;
+        }
+        return raiz.getInfo() == info;
+    }
+
     public NoAVL procurar (int info, NoAVL noAtual) {
         while (noAtual != null) {
             if (noAtual.getInfo() == info) {
@@ -46,7 +53,7 @@ public class AVL {
                     NoAVL novoNo = new NoAVL(info);
                     noAtual.setEsq(novoNo);
                     novoNo.setPai(noAtual);
-                    ajustarBalanceamento(noAtual);
+                    ajustarBalanceamento(raiz);
                     raiz = balanceia(raiz);
                 }
             } else if (info > noAtual.getInfo()) {
@@ -58,7 +65,7 @@ public class AVL {
                     NoAVL novoNo = new NoAVL(info);
                     noAtual.setDir(novoNo);
                     novoNo.setPai(noAtual);
-                    ajustarBalanceamento(noAtual);
+                    ajustarBalanceamento(raiz);
                     raiz = balanceia(raiz);
                 }
             } else {
