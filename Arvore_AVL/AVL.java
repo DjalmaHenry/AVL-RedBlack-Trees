@@ -24,7 +24,7 @@ public class AVL {
         if (isEmpty()) {
             NoAVL novoNo = new NoAVL(info);
             raiz = novoNo;
-            // defineFB(raiz);//define o fator de balanceamento de cada nó
+             ajustarBalanceamento(noAtual);
         } else {
             if (info < noAtual.getInfo()) {
                 if (noAtual.getEsq() != null) {
@@ -35,8 +35,8 @@ public class AVL {
                     NoAVL novoNo = new NoAVL(info);
                     noAtual.setEsq(novoNo);
                     novoNo.setPai(noAtual);
-                    ajustarBalanceamento(noAtual);// define o fator de balanceamento de cada nó
-                    raiz = balanceia(raiz);// Balanceia a arvore
+                    ajustarBalanceamento(noAtual);
+                    raiz = balanceia(raiz);
                 }
             } else if (info > noAtual.getInfo()) {
                 if (noAtual.getDir() != null) {
@@ -47,8 +47,8 @@ public class AVL {
                     NoAVL novoNo = new NoAVL(info);
                     noAtual.setDir(novoNo);
                     novoNo.setPai(noAtual);
-                    ajustarBalanceamento(noAtual);// define o fator de balanceamento de cada nó
-                    raiz = balanceia(raiz);// Balanceia a arvore
+                    ajustarBalanceamento(noAtual);
+                    raiz = balanceia(raiz);
                 }
             } else {
                 System.out.println("Caso de no ser repetido!");
