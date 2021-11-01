@@ -1,17 +1,17 @@
 package Arvore_AVL;
 
-public class AVL {
+public class PV {
 
-    private NoAVL raiz;
+    private NoPV raiz;
 
-    public AVL() {
+    public PV() {
     }
 
-    public NoAVL getRaiz() {
+    public NoPV getRaiz() {
         return raiz;
     }
 
-    public void setRaiz(NoAVL raiz) {
+    public void setRaiz(NoPV raiz) {
         this.raiz = raiz;
     }
 
@@ -19,7 +19,7 @@ public class AVL {
         return raiz == null;
     }
 
-    public NoAVL procurar (int info, NoAVL noAtual) {
+    public NoPV procurar (int info, NoPV noAtual) {
         while (noAtual != null) {
             if (noAtual.getInfo() == info) {
                 return noAtual;
@@ -32,9 +32,9 @@ public class AVL {
         return null;
     }
 
-    public void inserir(int info, NoAVL noAtual) {
+    public void inserir(int info, NoPV noAtual) {
         if (isEmpty()) {
-            NoAVL novoNo = new NoAVL(info);
+            NoPV novoNo = new NoPV(info);
             raiz = novoNo;
              ajustarBalanceamento(raiz);
         } else {
@@ -44,7 +44,7 @@ public class AVL {
                     inserir(info, noAtual.getEsq());
                 } else {
                     // no null, vamos inserir.
-                    NoAVL novoNo = new NoAVL(info);
+                    NoPV novoNo = new NoPV(info);
                     noAtual.setEsq(novoNo);
                     novoNo.setPai(noAtual);
                     ajustarBalanceamento(noAtual);
@@ -56,7 +56,7 @@ public class AVL {
                     inserir(info, noAtual.getDir());
                 } else {
                     // no null, vamos inserir.
-                    NoAVL novoNo = new NoAVL(info);
+                    NoPV novoNo = new NoPV(info);
                     noAtual.setDir(novoNo);
                     novoNo.setPai(noAtual);
                     ajustarBalanceamento(noAtual);
@@ -68,7 +68,7 @@ public class AVL {
         }
     }
 
-    public void percorrerEmOrdem(NoAVL no) {
+    public void percorrerEmOrdem(NoPV no) {
         if (no != null) {
             percorrerEmOrdem(no.getEsq());
             System.out.println(no.getInfo());
@@ -76,7 +76,7 @@ public class AVL {
         }
     }
 
-    public NoAVL remover(int info, NoAVL noAtual) {
+    public NoPV remover(int info, NoPV noAtual) {
         if (isEmpty()) {
             System.out.println("Caso de arvore vazia");
             return null;
@@ -98,7 +98,7 @@ public class AVL {
             } else if (noAtual.getDir() == null) {
                 noAtual = noAtual.getEsq();
             } else {
-                NoAVL aux = noAtual.getEsq();
+                NoPV aux = noAtual.getEsq();
                 while (aux.getDir() != null) {
                     aux = aux.getDir();
                 }
@@ -114,17 +114,9 @@ public class AVL {
         return noAtual;
     }
 
-    public void ajustarBalanceamento(NoAVL noAtual) {
-        noAtual.setBalanceamento(verificaAltura(noAtual.getEsq()) - verificaAltura(noAtual.getDir()));
-        if (noAtual.getDir() != null) {
-            ajustarBalanceamento(noAtual.getDir());
-        }
-        if (noAtual.getEsq() != null) {
-            ajustarBalanceamento(noAtual.getEsq());
-        }
-    }
+   
 
-    public int verificaAltura(NoAVL noAtual) {
+    public int verificaAltura(NoPV noAtual) {
         if (noAtual == null) {
             return -1;
         }
@@ -143,31 +135,10 @@ public class AVL {
         }
     }
 
-    public NoAVL balanceia(NoAVL noAtual) {
-        if (noAtual.getBalanceamento() == 2 && noAtual.getEsq().getBalanceamento() >= 0) {
-            noAtual = rotacaoADireita(noAtual);
+    
 
-        } else if (noAtual.getBalanceamento() == -2 && noAtual.getDir().getBalanceamento() <= 0) {
-            noAtual = rotacaoAEsquerda(noAtual);
-
-        } else if (noAtual.getBalanceamento() == 2 && noAtual.getEsq().getBalanceamento() < 0) {
-            noAtual = rotacaoDuplaDireita(noAtual);
-
-        } else if (noAtual.getBalanceamento() == -2 && noAtual.getDir().getBalanceamento() > 0) {
-            noAtual = rotacaoDuplaEsquerda(noAtual);
-        }
-
-        if (noAtual.getDir() != null) {
-            balanceia(noAtual.getDir());
-        }
-        if (noAtual.getEsq() != null) {
-            balanceia(noAtual.getEsq());
-        }
-        return noAtual;
-    }
-
-    public NoAVL rotacaoADireita(NoAVL noAtual) {
-        NoAVL aux = noAtual.getEsq();
+    public NoPV rotacaoADireita(NoPV noAtual) {
+        NoPV aux = noAtual.getEsq();
         aux.setPai(noAtual.getPai());
         if (aux.getDir() != null) {
             aux.getDir().setPai(noAtual);
@@ -186,8 +157,8 @@ public class AVL {
         return aux;
     }
 
-    public NoAVL rotacaoAEsquerda(NoAVL noAtual) {
-        NoAVL aux = noAtual.getDir();
+    public NoPV rotacaoAEsquerda(NoPV noAtual) {
+        NoPV aux = noAtual.getDir();
         aux.setPai(noAtual.getPai());
         if (aux.getEsq() != null) {
             aux.getEsq().setPai(noAtual);
@@ -207,17 +178,17 @@ public class AVL {
         return aux;
     }
 
-    public NoAVL rotacaoDuplaDireita(NoAVL noAtual) {
-        NoAVL aux = noAtual.getEsq();
+    public NoPV rotacaoDuplaDireita(NoPV noAtual) {
+        NoPV aux = noAtual.getEsq();
         noAtual.setEsq(rotacaoAEsquerda(aux));
-        NoAVL aux2 = rotacaoADireita(noAtual);
+        NoPV aux2 = rotacaoADireita(noAtual);
         return aux2;
     }
 
-    public NoAVL rotacaoDuplaEsquerda(NoAVL noAtual) {
-        NoAVL aux = noAtual.getDir();
+    public NoPV rotacaoDuplaEsquerda(NoPV noAtual) {
+        NoPV aux = noAtual.getDir();
         noAtual.setDir(rotacaoADireita(aux));
-        NoAVL aux2 = rotacaoAEsquerda(noAtual);
+        NoPV aux2 = rotacaoAEsquerda(noAtual);
         return aux2;
     }
 
