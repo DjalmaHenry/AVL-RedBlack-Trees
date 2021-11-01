@@ -1,4 +1,4 @@
-package ArvorePV;
+package View;
 
 import Arvore.Arvore;
 import Entidades.Carro;
@@ -26,10 +26,10 @@ public class main {
     };
 
     public static void main(String[] args){
-        PV arvore1 = new PV();
-        PV arvore2 = new PV();
-        PV arvore3 = new PV();
-        PV arvore4 = new PV();
+        Arvore arvore1 = new Arvore();
+        Arvore arvore2 = new Arvore();
+        Arvore arvore3 = new Arvore();
+        Arvore arvore4 = new Arvore();
 
         //Esses For's são para preenchear as árvores
 

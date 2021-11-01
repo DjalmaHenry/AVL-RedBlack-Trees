@@ -1,22 +1,22 @@
-package ArvorePV;
+package Arvore;
 
-public class PV<T extends Comparable<T>>{
+public class Arvore<Integer extends Comparable<Integer>>{
 
-    private NoPV<T> raiz;
+    private NoRN   raiz;
 
-    public PV(){
+    public Arvore(){
         this.raiz = null;
     }
 
-    public void inserir(T elemento){
+    public void inserir(int elemento){
         inserirP(this.raiz, elemento);
     }
 
-    private void inserirP(NoPV<T> raiz, T elemento) {
+    private void inserirP(NoRN<T> raiz, T elemento) {
 
         if(this.raiz == null){ //Arvoré vazia
             System.out.println("Iniciou a arvore");
-            this.raiz = new NoPV<T>(elemento);
+            this.raiz = new NoRN<T>(elemento);
             this.raiz.setPai(this.raiz);
             primeiroCasoAdd(this.raiz);
         }
@@ -27,7 +27,7 @@ public class PV<T extends Comparable<T>>{
                 inserirP(raiz.getEsquerda(), elemento);
             }
             else{
-                raiz.setEsquerda(new NoPV<T>(elemento));
+                raiz.setEsquerda(new NoRN<T>(elemento));
                 raiz.getEsquerda().setPai(raiz);
               //  System.out.println(raiz);
                 primeiroCasoAdd(raiz.getEsquerda());
@@ -40,7 +40,7 @@ public class PV<T extends Comparable<T>>{
                 inserirP(raiz.getDireita(), elemento);
             }
             else{
-                raiz.setDireita(new NoPV<T>(elemento));
+                raiz.setDireita(new NoRN<T>(elemento));
                 raiz.getDireita().setPai(raiz);
               //  System.out.println(raiz.getDireita());
                 primeiroCasoAdd(raiz.getDireita());
@@ -48,7 +48,7 @@ public class PV<T extends Comparable<T>>{
         }
     }
     
-    private void rotacaoLL(NoPV<T> raiz){  // Rotação simples a direita
+    private void rotacaoLL(NoRN<T> raiz){  // Rotação simples a direita
         System.out.println("Fez LL");
 
         if(raiz.getPai() ==  raiz.getPai().getPai().getEsquerda()){
@@ -67,7 +67,7 @@ public class PV<T extends Comparable<T>>{
 
     }
 
-    private void rotacaoRR(NoPV<T> raiz) {  // Rotação simples a esquerda
+    private void rotacaoRR(NoRN<T> raiz) {  // Rotação simples a esquerda
         System.out.println("Fez RR");
 
         if (raiz.getPai() == raiz.getPai().getPai().getEsquerda()) {
@@ -84,7 +84,7 @@ public class PV<T extends Comparable<T>>{
         raiz.getPai().setPai(raiz);
     }
 
-    private void primeiroCasoAdd(NoPV<T> raiz){  //Se for a raiz da arvore, só pintar de preto
+    private void primeiroCasoAdd(NoRN<T> raiz){  //Se for a raiz da arvore, só pintar de preto
 
         if(raiz == this.raiz){
         //    System.out.println("Primeiro");
@@ -95,7 +95,7 @@ public class PV<T extends Comparable<T>>{
         }
     }
 
-    private void segundoCasoAdd(NoPV<T> raiz){ //Se o pai for preto, a árvore está desbalanceada
+    private void segundoCasoAdd(NoRN<T> raiz){ //Se o pai for preto, a árvore está desbalanceada
         if(!(raiz.getPai().getCor())) { //Se o pai for preto não faz nada
         }
         else{
@@ -103,10 +103,10 @@ public class PV<T extends Comparable<T>>{
         }
     }
 
-    private void terceiroCasoAdd(NoPV<T> raiz) { //Se o pai for vermelho
-        NoPV<T> t = tio(raiz); //Guarda a referência do tio da raiz
-        NoPV<T> v = raiz.getPai().getPai(); //Guarda a referência do avô da raiz
-        NoPV<T> p = raiz.getPai(); //Guarda a referência do pai da raiz
+    private void terceiroCasoAdd(NoRN<T> raiz) { //Se o pai for vermelho
+        NoRN<T> t = tio(raiz); //Guarda a referência do tio da raiz
+        NoRN<T> v = raiz.getPai().getPai(); //Guarda a referência do avô da raiz
+        NoRN<T> p = raiz.getPai(); //Guarda a referência do pai da raiz
         if(t != null && t.getCor()){ // se o tio for vermelho e diferente de null
             t.setCor(false); //pinta o tio de preto
             p.setCor(false); //pinta o pai de preto
@@ -120,9 +120,9 @@ public class PV<T extends Comparable<T>>{
     }
 
 
-    private void quartoCasoAdd(NoPV<T> raiz){ //Caso que utiliza as rotações para tentar deixar o avô, o pai, e a raiz alinhados
-        NoPV<T> p = raiz.getPai();
-        NoPV<T> v = raiz.getPai().getPai();
+    private void quartoCasoAdd(NoRN<T> raiz){ //Caso que utiliza as rotações para tentar deixar o avô, o pai, e a raiz alinhados
+        NoRN<T> p = raiz.getPai();
+        NoRN<T> v = raiz.getPai().getPai();
         if(p.getDireita() == raiz && v.getEsquerda() == p){ // Se o filho a direita do pai da raiz for a raiz e o filho a esquerdo do avô da raiz for o pai (Forma o "Joelho")
             rotacaoRR(raiz); //Faz rotação a esquerda na raiz
         }
@@ -133,8 +133,8 @@ public class PV<T extends Comparable<T>>{
 
     }
 
-    private void quintoCasoAdd(NoPV<T> raiz){ //Estão alinhados, muda cores e faz rotações no avô
-        NoPV<T> p = raiz.getPai(); //Guarda a referência do pai da raiz
+    private void quintoCasoAdd(NoRN<T> raiz){ //Estão alinhados, muda cores e faz rotações no avô
+        NoRN<T> p = raiz.getPai(); //Guarda a referência do pai da raiz
         raiz.setCor(false); //Seta a cor da raiz para preto
         p.setCor(true); //Set a cor do pai para vermelho
 
@@ -159,7 +159,7 @@ public class PV<T extends Comparable<T>>{
       this.raiz = removeP(this.raiz, elemento);
     }
 
-    private NoPV<T> removeP(NoPV<T> raiz, T elemento){
+    private NoRN<T> removeP(NoRN<T> raiz, T elemento){
         if(raiz == null){
 
         }
@@ -173,7 +173,7 @@ public class PV<T extends Comparable<T>>{
                raiz.setEsquerda(removeP(raiz.getEsquerda(), elemento));
             }
             else{
-                NoPV<T> sucessor;
+                NoRN<T> sucessor;
                 if(raiz.getElemento().compareTo(this.raiz.getElemento()) < 0){
                     sucessor = sucessor(this.raiz.getEsquerda());
                 }
@@ -211,7 +211,7 @@ public class PV<T extends Comparable<T>>{
         return raiz;
     }
 
-    private void primeiroCasoDel(NoPV<T> raiz, NoPV<T> sucessor){
+    private void primeiroCasoDel(NoRN<T> raiz, NoRN<T> sucessor){
         if(raiz.getCor() && sucessor.getCor()){ // raiz vermelha e sucessor vermelho, não é para mudar
             System.out.println("Primeiro caso");
         }
@@ -220,7 +220,7 @@ public class PV<T extends Comparable<T>>{
         }
     }
 
-    private void segundoCasoDel(NoPV<T> raiz, NoPV<T> sucessor){
+    private void segundoCasoDel(NoRN<T> raiz, NoRN<T> sucessor){
         if(!(raiz.getCor()) && sucessor.getCor()){ //raiz preta e sucessor vermelho
             System.out.println("Segundo caso");
             sucessor.setCor(false); //Pinta o sucessor de preto
@@ -231,11 +231,11 @@ public class PV<T extends Comparable<T>>{
 
     }
 
-    private void terceiroCasoDel(NoPV<T> raiz, NoPV<T> sucessor){
+    private void terceiroCasoDel(NoRN<T> raiz, NoRN<T> sucessor){
         if(!(raiz.getCor()) && !(sucessor.getCor())){ //Raiz preta e sucessor preto
             System.out.println("Terceiro caso");
-            NoPV<T> aux = achaFilho(sucessor); //Filho do sucessor
-            NoPV<T> w = tio(aux); // tio do filho do sucessor
+            NoRN<T> aux = achaFilho(sucessor); //Filho do sucessor
+            NoRN<T> w = tio(aux); // tio do filho do sucessor
             System.out.println(w);
 
             if(w.getCor()){ //O irmão do filho do sucessor é vermelho, 3.1
@@ -272,7 +272,7 @@ public class PV<T extends Comparable<T>>{
         }
     }
 
-    private void quartoCasoDel(NoPV<T> raiz,  NoPV<T> sucessor){
+    private void quartoCasoDel(NoRN<T> raiz,  NoRN<T> sucessor){
         if(raiz.getCor() && !(sucessor.getCor())){ //A raiz é vermelha e o sucessor é preto
             System.out.println("Quarto caso");
             sucessor.setCor(true); //Pinta o sucessor de vermelho
@@ -282,15 +282,15 @@ public class PV<T extends Comparable<T>>{
     }
 
 
-    private NoPV<T> sucessor(NoPV<T> raiz){ //Função para pegar o menor valor a direita da raiz
+    private NoRN<T> sucessor(NoRN<T> raiz){ //Função para pegar o menor valor a direita da raiz
         while(raiz != null && raiz.getEsquerda() != null){
             raiz = raiz.getEsquerda();
         }
         return raiz;
     }
 
-    private NoPV<T> achaFilho(NoPV<T> raiz){ //Pegar o filho de uma raiz que possua 1 ou nenhum filho
-        NoPV<T> filho = null;
+    private NoRN<T> achaFilho(NoRN<T> raiz){ //Pegar o filho de uma raiz que possua 1 ou nenhum filho
+        NoRN<T> filho = null;
         if(raiz == null){
             return null;
         }
@@ -304,8 +304,8 @@ public class PV<T extends Comparable<T>>{
         return filho;
     }
 
-    private NoPV<T> acharIrmao(NoPV<T> raiz){ //Pegar o irmão de uma raiz
-        NoPV<T> irmao= null;
+    private NoRN<T> acharIrmao(NoRN<T> raiz){ //Pegar o irmão de uma raiz
+        NoRN<T> irmao= null;
 
         if(raiz.getPai().getEsquerda() != null && raiz.getPai().getEsquerda() != raiz){
             irmao = raiz.getPai().getEsquerda();
@@ -322,7 +322,7 @@ public class PV<T extends Comparable<T>>{
         preOrdemP(this.raiz);
     }
 
-    private void preOrdemP(NoPV<T> raiz){
+    private void preOrdemP(NoRN<T> raiz){
         if(raiz == null){
             System.out.println("Árvore vazia!");
         }
@@ -342,7 +342,7 @@ public class PV<T extends Comparable<T>>{
         return buscaP(this.raiz, elemento);
     }
 
-    private T buscaP(NoPV<T> raiz, T elemento){ // Busca simples
+    private T buscaP(NoRN<T> raiz, T elemento){ // Busca simples
         if(raiz == null){
             return null;
         }
@@ -359,8 +359,8 @@ public class PV<T extends Comparable<T>>{
         }
     }
 
-    private NoPV<T> tio(NoPV<T> raiz){ //Função para pegar o tio da raiz
-        NoPV<T> tio = null;
+    private NoRN<T> tio(NoRN<T> raiz){ //Função para pegar o tio da raiz
+        NoRN<T> tio = null;
 
         if(raiz.getPai().getPai().getEsquerda() != null && raiz.getPai().getPai().getEsquerda() != raiz.getPai()){
             tio = raiz.getPai().getPai().getEsquerda();
