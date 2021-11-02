@@ -4,12 +4,24 @@ public class Arvore  {
 
     private NoRN   raiz;
 
+    public NoRN getRaiz () {
+        return raiz;
+    }
+
     public Arvore(){
         this.raiz = null;
     }
 
     public void inserir(int elemento){
         inserirP(this.raiz, elemento);
+    }
+
+    public void percorrerEmOrdem(NoRN no) {
+        if (no != null) {
+            percorrerEmOrdem(no.getEsquerda());
+            System.out.println(no.getElemento());
+            percorrerEmOrdem(no.getDireita());
+        }
     }
 
     private void inserirP(NoRN  raiz, int elemento) {

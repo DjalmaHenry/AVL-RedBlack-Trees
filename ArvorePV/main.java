@@ -10,6 +10,8 @@ public class main {
             System.out.println("Inserindo " + i);
         }
 
+        arvore1.percorrerEmOrdem(arvore1.getRaiz());
+
     }
 
 
