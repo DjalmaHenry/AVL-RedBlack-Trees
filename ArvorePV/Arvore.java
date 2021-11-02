@@ -99,7 +99,6 @@ public class Arvore  {
     }
 
     private void primeiroCasoAdd(NoRN  raiz){  //Se for a raiz da arvore, só pintar de preto
-
         if(raiz == this.raiz){
         //    System.out.println("Primeiro");
             raiz.setCor(false);
