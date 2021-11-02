@@ -1,38 +1,38 @@
 package ArvorePV;
 
-public class NoRN extends Comparable <int> {
-    private NoRN  esquerda;
-    private NoRN  direita;
-    private NoRN  pai;
-    private boolean cor; // True = vermelho   ,  False = preto
+public class NoRN implements Comparable<NoRN> {
+    private NoRN esquerda;
+    private NoRN direita;
+    private NoRN pai;
+    private boolean cor; // True = vermelho , False = preto
     private int elemento;
 
-    public NoRN(int elemento){
+    public NoRN(int elemento) {
         this.cor = true;
         this.elemento = elemento;
     }
 
-    public NoRN  getEsquerda() {
+    public NoRN getEsquerda() {
         return esquerda;
     }
 
-    public void setEsquerda(NoRN  esquerda) {
+    public void setEsquerda(NoRN esquerda) {
         this.esquerda = esquerda;
     }
 
-    public NoRN  getDireita() {
+    public NoRN getDireita() {
         return direita;
     }
 
-    public void setDireita(NoRN  direita) {
+    public void setDireita(NoRN direita) {
         this.direita = direita;
     }
 
-    public NoRN  getPai() {
+    public NoRN getPai() {
         return pai;
     }
 
-    public void setPai(NoRN  pai) {
+    public void setPai(NoRN pai) {
         this.pai = pai;
     }
 
@@ -52,17 +52,15 @@ public class NoRN extends Comparable <int> {
         this.elemento = elemento;
     }
 
-    public int compareTo(int elemento){
-        return this.elemento.compareTo(elemento);
+    public int compareTo(NoRN no) {
+        if (this.elemento == no.elemento)
+            return 1;
+        else
+            return 0;
     }
 
     @Override
-    public String toString(){
-        if(this.cor){
-           return this.elemento.toString() + " / Cor: Vermelho";
-        }
-        else{
-            return this.elemento.toString() + " / Cor: Preto";
-        }
+    public String toString() {
+        return "Elemento: " + this.elemento + " Cor: " + this.cor;
     }
 }
