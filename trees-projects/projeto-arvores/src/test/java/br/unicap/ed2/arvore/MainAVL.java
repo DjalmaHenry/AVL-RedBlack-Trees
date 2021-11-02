@@ -1,6 +1,6 @@
 package br.unicap.ed2.arvore;
 
-public class Main {
+public class MainAVL {
     public static void main(String[] args) {
         ArvoreAVlTest teste = new ArvoreAVlTest();
 
