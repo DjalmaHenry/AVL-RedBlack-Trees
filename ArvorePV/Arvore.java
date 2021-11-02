@@ -57,6 +57,8 @@ public class Arvore  {
               //  System.out.println(raiz.getDireita());
                 primeiroCasoAdd(raiz.getDireita());
             }
+        } else {
+            System.out.println("Elemento já existe na arvore");
         }
     }
     

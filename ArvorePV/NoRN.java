@@ -54,9 +54,11 @@ public class NoRN implements Comparable<NoRN> {
 
     public int compareTo(NoRN no) {
         if (this.elemento == no.elemento)
+            return 0;
+        else if (this.elemento > no.elemento)
             return 1;
         else
-            return 0;
+            return -1;
     }
 
     @Override
