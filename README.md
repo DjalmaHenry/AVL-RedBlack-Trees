@@ -26,7 +26,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 🚀 Como Executar
 
-### Para executar os testes automatizados desenvolvido por Waldemar Pires Ferreira Neto
+### Para executar os testes automatizados desenvolvido por [Waldemar Pires Ferreira Neto](https://github.com/netuh)
 
 - Instale a JDK do Java
 - Clone o repositório
