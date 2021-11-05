@@ -23,9 +23,9 @@ public class ArvorePVTest {
         NoPV auxEsq = aux.getEsq();
         // foi nessario efetuar a troca de esquerda para direita e vice-versa.
         assertTrue(auxDir != null);
-        assertTrue(auxDir.getV() == 18);
+        assertTrue(auxDir.getValor() == 18);
         assertTrue(auxEsq != null);
-        assertTrue(auxEsq.getV() == 15);
+        assertTrue(auxEsq.getValor() == 15);
         assertTrue(a.ehRaiz(8));
 
     }
@@ -46,9 +46,9 @@ public class ArvorePVTest {
         NoPV auxEsq = aux.getEsq();
         // foi nessario efetuar a troca de esquerda para direita e vice-versa.
         assertTrue(auxDir != null);
-        assertTrue(auxDir.getV() == 40);
+        assertTrue(auxDir.getValor() == 40);
         assertTrue(auxEsq != null);
-        assertTrue(auxEsq.getV() == 18);
+        assertTrue(auxEsq.getValor() == 18);
         assertTrue(a.ehRaiz(8));
 
     }
