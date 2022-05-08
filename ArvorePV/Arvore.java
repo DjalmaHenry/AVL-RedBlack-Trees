@@ -33,7 +33,7 @@ public class Arvore  {
             primeiroCasoAdd(this.raiz);
         }
 
-        else if(novoNo.compareTo(raiz) < 0){
+        else if(elemento < raiz.getElemento()){
 
             if(raiz.getEsquerda() != null){
                 inserirP(raiz.getEsquerda(), elemento);
@@ -46,7 +46,7 @@ public class Arvore  {
             }
         }
 
-        else if(novoNo.compareTo(raiz) > 0){
+        else if(elemento > raiz.getElemento()){
 
             if(raiz.getDireita() != null){
                 inserirP(raiz.getDireita(), elemento);
